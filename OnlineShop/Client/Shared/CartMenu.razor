@@ -1,0 +1,33 @@
+﻿@implements IDisposable
+@inject IShoppingCartService shoppingCartService
+
+<a href="ShoppingCart" class="btn btn-info">
+    <i class="oi oi-cart"></i>&nbsp;Cart
+    <span class="badge bg-dark">@shoppingCartItemCount</span>
+</a>
+
+@code {
+
+    //We use this variable in the anchor tag
+    private int shoppingCartItemCount = 0;
+
+    protected override void OnInitialized()
+    {
+        shoppingCartService.OnShoppingCartChanged += ShoppingCartChanged;
+    }
+
+    protected void ShoppingCartChanged(int totalQty)
+    {
+        shoppingCartItemCount = totalQty;
+
+        /* Blazor telling to rerender the relavent components
+        In this case the component will get rerenderes everytime shoppingCartItemCount changes */
+        StateHasChanged();
+    }
+
+    void IDisposable.Dispose()
+    {
+        shoppingCartService.OnShoppingCartChanged -= ShoppingCartChanged;
+    }
+
+}
