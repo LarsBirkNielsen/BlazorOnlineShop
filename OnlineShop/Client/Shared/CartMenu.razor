@@ -1,10 +1,16 @@
 ﻿@implements IDisposable
 @inject IShoppingCartService shoppingCartService
 
-<a href="ShoppingCart" class="btn btn-info">
+@*<a href="ShoppingCart" class="btn btn-info">
     <i class="oi oi-cart"></i>&nbsp;Cart
     <span class="badge bg-dark">@shoppingCartItemCount</span>
-</a>
+</a>*@
+<div class="test">
+    <a href="ShoppingCart">
+        <i class="fa" style="font-size:24px">&#xf07a;</i>
+        <span class='badge badge-warning' id='lblCartCount'> @shoppingCartItemCount </span>
+    </a>
+</div>
 
 @code {
 

@@ -43,6 +43,7 @@
 
     protected override void OnInitialized()
     {
+        //Subscribing to the OnShoppingCartChanged event
         shoppingCartService.OnShoppingCartChanged += ShoppingCartChanged;
     }
     private void ShoppingCartChanged(int totalQty)

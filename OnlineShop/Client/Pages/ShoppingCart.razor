@@ -1,4 +1,5 @@
 ﻿@page "/ShoppingCart"
+@using System.Globalization
 @inherits ShoppingCartBase
 
 @*OnInput calls the Js function (line 32), remember the data-itemId on the button below*@
@@ -28,7 +29,7 @@ else
                         <h5>@item.ProductName</h5>
                         <div class="mb-4">@item.ProductDescription</div>
                         <span>
-                             Price: <b>@item.Price.ToString("C")</b>
+                                Price: <b>@item.Price.ToString("C0", CultureInfo.CreateSpecificCulture("da-DK"))</b>
                             <input @oninput = "()=>UpdateQty_Input(item.Id)" 
                             type="number" @bind="@item.Qty" />
                             <button data-itemId="@item.Id" class="btn btn-info btn-sm update-qty"
@@ -47,7 +48,7 @@ else
         <div class="col-md-3">
             <h5>Cart Summary</h5>
             <div class="mt-2">
-                <div>Total - (@TotalQuantity items)&nbsp;<b>@TotalPrice</b></div>
+                <div>Total - (@TotalQuantity items) <b>@TotalPrice</b></div>
                 <a href="Checkout" class="btn btn-success">
                     <span class="oi oi-credit-card"></span>&nbsp; Proceed to Checkout 
                 </a>

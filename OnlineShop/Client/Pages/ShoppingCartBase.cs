@@ -2,6 +2,7 @@
 using Microsoft.JSInterop;
 using OnlineShop.Models.Dtos;
 using OnlineShop.Client.Services.Contracts;
+using System.Globalization;
 
 namespace OnlineShop.Client.Pages
 {
@@ -120,11 +121,11 @@ namespace OnlineShop.Client.Pages
 
         private void SetTotalPrice()
         {
-            TotalPrice = this.ShoppingCartItems.Sum(p => p.TotalPrice).ToString("C");
+            TotalPrice = ShoppingCartItems.Sum(p => p.TotalPrice).ToString("C0", CultureInfo.CreateSpecificCulture("da-DK"));
         }
         private void SetTotalQuantity()
         {
-            TotalQuantity = this.ShoppingCartItems.Sum(p => p.Qty);
+            TotalQuantity = ShoppingCartItems.Sum(p => p.Qty);
         }
 
         private CartItemDto GetCartItem(int id)
